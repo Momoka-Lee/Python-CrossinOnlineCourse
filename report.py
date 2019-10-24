@@ -1,7 +1,5 @@
 import sys
 import os
-ff=open('reportanalysis.txt','a')
-ff.close()
 
 ff=open('Report Analysis.txt','w',encoding='utf-8')
 
@@ -18,7 +16,7 @@ for i in data:
         student[1:] = list(map(int, student[1:]))
         total = sum(student[1:])
         student.append(total)
-        gpa = int(round(sum(student[1:-1]) / 9, 2))
+        gpa = round(sum(student[1:-1]) / 9, 2)
         student.append(gpa)
         ss.append(student)
 
@@ -35,15 +33,20 @@ for y in sal:
     ssa.append(average)
 ssa_new=[str(x) for x in ssa]
 ssa_new_str=','.join(ssa_new)
-print(ssa_new_str,file=ff)
+print(0,ssa_new_str,file=ff)
 
 for student in ss:
     student[1:-3] = ['不及格' if x < 60 else x for x in student[1:-3]]
 ssn=sorted(ss, key=lambda s:s[-1],reverse=True)
+
+index=0
 for i in ssn:
+    index+=1
     i_new=[str(x)for x in i]
     i_new_str=' '.join(i_new)
-    print(i_new_str,file=ff)
+    print(index,i_new_str,file=ff)
+
+ff.close()
 
 
 
