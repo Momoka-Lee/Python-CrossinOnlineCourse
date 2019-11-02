@@ -5,6 +5,7 @@ import threading
 
 first = int(input('请输入初始页码'))
 last = int(input('请输入终止页码'))
+print('开始下载')
 
 for i in range(first, last + 1):
     if i == 1:
