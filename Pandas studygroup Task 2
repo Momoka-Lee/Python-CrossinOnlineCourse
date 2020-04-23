@@ -1,0 +1,177 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import pandas as pd
+import numpy as np
+
+
+# In[25]:
+
+
+iris=pd.read_csv(r'C:\Users\yili3\OneDrive\Desktop\iris.csv',header=None)
+
+
+# In[26]:
+
+
+iris
+
+
+# In[27]:
+
+
+iris=pd.Index(iris)
+
+
+# In[28]:
+
+
+max_index=iris.argmax()
+
+
+# In[29]:
+
+
+min_index=iris.argmin()
+
+
+# In[30]:
+
+
+max_index
+
+
+# In[31]:
+
+
+min_index
+
+
+# In[32]:
+
+
+max=iris[max_index]
+
+
+# In[33]:
+
+
+min=iris[min_index]
+
+
+# In[34]:
+
+
+max
+
+
+# In[35]:
+
+
+min
+
+
+# In[41]:
+
+
+iris=pd.DataFrame(iris)
+
+
+# In[43]:
+
+
+sorted_iris=iris.sort_values(by=0)
+
+
+# In[44]:
+
+
+sorted_iris
+
+
+# In[45]:
+
+
+np.unique(iris)
+
+
+# In[46]:
+
+
+mean=np.mean(iris)
+
+
+# In[47]:
+
+
+mean
+
+
+# In[48]:
+
+
+std=np.std(iris)
+
+
+# In[49]:
+
+
+std
+
+
+# In[50]:
+
+
+var=np.var(iris)
+
+
+# In[51]:
+
+
+var
+
+
+# In[52]:
+
+
+total_sum=iris.sum()
+
+
+# In[53]:
+
+
+total_sum
+
+
+# In[54]:
+
+
+sorted_cumsum=sorted_iris.cumsum()
+
+
+# In[55]:
+
+
+sorted_cumsum
+
+
+# In[57]:
+
+
+counts=(iris>5.84).sum()
+
+
+# In[58]:
+
+
+counts
+
+
+# In[ ]:
+
+
+
+
