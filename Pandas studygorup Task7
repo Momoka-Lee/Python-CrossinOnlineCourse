@@ -1,0 +1,155 @@
+# In[1]:
+
+
+import pandas as pd
+import numpy as np
+
+
+# In[3]:
+
+
+df=pd.read_csv(r'C:\Users\yili3\OneDrive\Desktop\jobs.csv', encoding='utf-8')
+
+
+# In[4]:
+
+
+df.drop_duplicates(inplace=True)
+
+
+# In[5]:
+
+
+df.head()
+
+
+# In[29]:
+
+
+source_summary=df['source'].value_counts()
+
+
+# In[30]:
+
+
+source_summary
+
+
+# In[12]:
+
+
+df['da']=np.where(df['title'].str.contains('数据分析师'),'数据分析师','其他')
+
+
+# In[19]:
+
+
+selected_data=df.loc[df['da']=='数据分析师']
+
+
+# In[20]:
+
+
+selected_data
+
+
+# In[31]:
+
+
+experience_summary=selected_data['experience'].value_counts()
+
+
+# In[32]:
+
+
+experience_summary
+
+
+# In[34]:
+
+
+education_summary=selected_data['education'].value_counts()
+
+
+# In[35]:
+
+
+education_summary
+
+
+# In[38]:
+
+
+title_summary=df['industry'].value_counts()
+
+
+# In[39]:
+
+
+title_summary
+
+
+# In[62]:
+
+
+avg_salary=df['salary2'].mean()
+
+
+# In[63]:
+
+
+avg_salary
+
+
+# In[73]:
+
+
+df1=df.sort_values('salary2',ascending=False)
+
+
+# In[125]:
+
+
+df1.reset_index(inplace=True)
+
+
+# In[126]:
+
+
+df1.loc[:10,['company','salary2']]
+
+
+# In[78]:
+
+
+company_summary=df['company'].value_counts()
+
+
+# In[116]:
+
+
+jobs=df1['company_type'].value_counts()
+
+
+# In[117]:
+
+
+jobs
+
+
+# In[119]:
+
+
+companytype_to_jobs=dict(jobs)
+
+
+# In[121]:
+
+
+df1['jobs']=df1['company_type'].map(companytype_to_jobs)
+
+
+# In[127]:
+
+
+df1.loc[:10,['company_type','jobs']]
