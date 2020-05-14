@@ -1,0 +1,195 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import pandas as pd
+import numpy as np
+
+
+# In[2]:
+
+
+data=pd.read_csv(r'C:\Users\yili3\OneDrive\Desktop\houses.csv',index_col=0,encoding='gbk')
+
+
+# In[4]:
+
+
+data=data.drop_duplicates()
+
+
+# In[5]:
+
+
+data.head()
+
+
+# In[13]:
+
+
+total_houses=len(data['_id'].unique())
+
+
+# In[14]:
+
+
+total_houses
+
+
+# In[11]:
+
+
+total_xiaoqu=len(data['xiaoqu_name'].unique())
+
+
+# In[12]:
+
+
+total_xiaoqu
+
+
+# In[15]:
+
+
+total_subdistricts=len(data['sub_district_name'].unique())
+
+
+# In[16]:
+
+
+total_subdistricts
+
+
+# In[17]:
+
+
+data['huxing'].unique()
+
+
+# In[18]:
+
+
+data['zhuangxiu'].unique()
+
+
+# In[19]:
+
+
+data['buildyear'].unique()
+
+
+# In[20]:
+
+
+avg_price=data['up_price'].mean()
+
+
+# In[21]:
+
+
+avg_price
+
+
+# In[24]:
+
+
+grouped1=data.groupby('huxing')['size'].mean()
+
+
+# In[28]:
+
+
+grouped1.sort_values(ascending=False)
+
+
+# In[29]:
+
+
+huxing_counts=data['huxing'].value_counts()
+
+
+# In[30]:
+
+
+huxing_counts.sort_values(ascending=False)
+
+
+# In[33]:
+
+
+xiaoqu_counts=data['xiaoqu_name'].value_counts().sort_values(ascending=False)
+
+
+# In[34]:
+
+
+xiaoqu_counts
+
+
+# In[35]:
+
+
+avgprice_xiaoqu=data.groupby('xiaoqu_name')['up_price'].mean()
+
+
+# In[36]:
+
+
+avgprice_xiaoqu
+
+
+# In[55]:
+
+
+Top5=data.sort_values(by='price',ascending=False)[:5]
+
+
+# In[56]:
+
+
+Top5
+
+
+# In[60]:
+
+
+
+
+
+# In[66]:
+
+
+data['buildyear']=pd.to_datetime(data['buildyear'], format='%Y')
+
+
+# In[71]:
+
+
+grouped2=data.groupby('buildyear').size()
+
+
+# In[72]:
+
+
+grouped2
+
+
+# In[74]:
+
+
+houses_count_byyear=grouped2.resample('10Y').sum()
+
+
+# In[75]:
+
+
+houses_count_byyear
+
+
+# In[ ]:
+
+
+
+
